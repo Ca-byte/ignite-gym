@@ -1,6 +1,7 @@
-import { Text, View, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { NativeBaseProvider } from 'native-base';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+import { Loading } from '@/components/Loading';
 
 
 export default function App() {
@@ -13,7 +14,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
        />
-     {fontsLoaded ? <View /> : <View />}
+     <Loading />
     </View>
     </NativeBaseProvider>
   );
