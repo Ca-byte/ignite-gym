@@ -6,7 +6,8 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "native-base": ["node_modules/native-base"]
     }
   }
 }
