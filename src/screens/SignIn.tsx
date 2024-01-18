@@ -1,5 +1,5 @@
 
-import { Center, Image, Text, VStack } from "native-base";
+import { Center, Image, Text, VStack, Heading } from "native-base";
 import BackgroundImg from '@/assets/background.png';
 import LogoSvg from '@/assets/logo.svg'
 
@@ -15,6 +15,11 @@ export function SignIn(){
 			<Center my={24}>
 				<LogoSvg />
 				<Text color='gray.100' fontSize="sm">Train your mind and body</Text>
+			</Center>
+			<Center>
+				<Heading color="gray.100" fontSize="xl" fontFamily="heading">
+					Access your account 
+				</Heading>
 			</Center>
 		</VStack>
 	)
