@@ -38,6 +38,10 @@ export function SignIn(){
 					title="Access"
 				 />
 			</Center>
+			<Button 
+			variant="outline"
+				title="Create account"
+			/>
 		</VStack>
 	)
 }
