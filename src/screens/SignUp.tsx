@@ -4,8 +4,16 @@ import BackgroundImg from '@/assets/background.png';
 import LogoSvg from '@/assets/logo.svg'
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export function SignUp(){
+	const navigation = useNavigation();
+
+
+	function handleGoBack(){
+		navigation.goBack();
+	}
+
 	return(
 		<ScrollView 
 		contentContainerStyle={{ flexGrow: 1}} 
@@ -50,6 +58,7 @@ export function SignUp(){
 					<Button mt={24}
 						variant="outline"
 						title="Back to login"
+						onPress={handleGoBack}
 					/>
 					
 			</VStack>
