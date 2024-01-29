@@ -14,6 +14,7 @@ export function SignIn(){
 	function handleNewAccount(){
 		navigation.navigate('signUp');
 	}
+	
 	return(
 		<ScrollView 
 		contentContainerStyle={{ flexGrow: 1}} 
