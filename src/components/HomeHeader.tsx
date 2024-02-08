@@ -27,7 +27,6 @@ export function HomeHeader(){
 					color="gray.200"
 					size={7}
 				/>
-
 			</TouchableOpacity>
 		</HStack>
 	)
