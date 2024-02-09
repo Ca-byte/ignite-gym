@@ -1,6 +1,6 @@
 import { Group } from "@/components/Group";
 import { HomeHeader } from "@/components/HomeHeader";
-import { Text, VStack } from "native-base";
+import { VStack } from "native-base";
 
 export function Home(){
 	return (
