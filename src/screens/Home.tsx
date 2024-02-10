@@ -7,6 +7,7 @@ export function Home(){
 		<VStack flex={1}>
 			<HomeHeader />
 			<Group name="back" />
+			<Group name="shoulders" />
 		</VStack>
 	)
 }
