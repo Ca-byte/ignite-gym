@@ -12,15 +12,15 @@ export function Home(){
 		<VStack flex={1}>
 			<HomeHeader />
 				<FlatList
-				data={groups}
-				keyExtractor={item => item}
-				renderItem={({ item}) => (
-					<Group 
-						name={item} 
-						isActive={groupSelected.toUpperCase() === item.toUpperCase()}
-						onPress={() => setGroupSelected(item)}
-					/>
-				)}
+					data={groups}
+					keyExtractor={item => item}
+					renderItem={({ item}) => (
+						<Group 
+							name={item} 
+							isActive={groupSelected.toUpperCase() === item.toUpperCase()}
+							onPress={() => setGroupSelected(item)}
+						/>
+					)}
 					horizontal
 					showsHorizontalScrollIndicator={false}
 					_contentContainerStyle={{ px: 8 }}

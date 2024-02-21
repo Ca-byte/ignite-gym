@@ -7,10 +7,10 @@ export function HomeHeader(){
 	return(
 		<HStack bg="gray.600" pt={16} pb={5} px={4} alignItems="center">
 			<UserPhoto 
-			source={{ uri: 'https://github.com/Ca-byte.png'}}
-			alt="User Image Profile"
-			size={16}
-			mr={4}
+				source={{ uri: 'https://github.com/Ca-byte.png'}}
+				alt="User Image Profile"
+				size={16}
+				mr={4}
 			/>
 			<VStack flex={1}>
 			<Text color="gray.100" fontSize="md">
