@@ -13,7 +13,8 @@ export function Profile(){
 	return (
 		<VStack>
 			<ScreenHeader title="Profile" />
-			<ScrollView>
+
+			<ScrollView contentContainerStyle={{ paddingBottom: 36}}>
 				<Center mt={6} px={10}>
 					{ isPhotoLoaded ?
 						<Skeleton 
@@ -43,9 +44,8 @@ export function Profile(){
 						placeholder="E-mail"
 						isDisabled
 					/>
-				</Center>
-				<VStack px={10} mt={12} mb={9}>
-          <Heading color="gray.200" fontSize="md" mb={2}>
+
+          <Heading color="gray.200" fontSize="md" mb={2} alignSelf="flex-start" mt={12}>
 						Change Password
           </Heading>
 
@@ -68,7 +68,7 @@ export function Profile(){
           />
 
           <Button title="Update" mt={4} />
-        </VStack>
+        </Center>
 			</ScrollView>
 		</VStack>
 	)
