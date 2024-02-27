@@ -1,13 +1,23 @@
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { ExerciseCard } from "@/components/ExerciseCard";
 import { Group } from "@/components/Group";
 import { HomeHeader } from "@/components/HomeHeader";
+
 import { FlatList, HStack, Heading, Text, VStack } from "native-base";
-import { useState } from "react";
+import { AppNavigatorRoutesProps } from "@/routes/app.route";
 
 export function Home(){
 	const [groups, setGroups] = useState(['back','biceps','shoulder','triceps'])
 	const [exercises, setExercises] = useState(['Front Pull', 'Bent Row', 'Single Row', 'Deadlifts']);
 	const [groupSelected, setGroupSelected] = useState('back')
+
+	const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  function handleOpenExerciseDetails() {
+    navigation.navigate('exercise');
+  }
+
 	return (
 		<VStack flex={1}>
 			<HomeHeader />
@@ -42,7 +52,7 @@ export function Home(){
 						data={exercises}
 						keyExtractor={item => item}
 						renderItem={({ item }) => (
-							<ExerciseCard />
+							<ExerciseCard  onPress={handleOpenExerciseDetails}/>
 						)}
 						showsVerticalScrollIndicator={false}
 						_contentContainerStyle={{
