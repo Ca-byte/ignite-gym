@@ -36,6 +36,7 @@ export function Home(){
 					_contentContainerStyle={{ px: 8 }}
 					my={10}
 					maxH={10}
+					minH={10}
 				/>
 				<VStack px={8}>
 					<HStack justifyContent="space-between" mb={5}>
