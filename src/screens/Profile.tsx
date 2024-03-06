@@ -11,6 +11,7 @@ const PHOTO_SIZE = 33;
 
 export function Profile(){
 	const [isPhotoLoaded, setIsPhotoLoaded]= useState(false);
+	const [ usePhoto, setUserPhoto]= useState('https://github.com/Ca-byte.png');
 
 	async function handleUserPhothSelected() {
 		const photoSelected = await ImagePicker.launchImageLibraryAsync({
@@ -23,8 +24,7 @@ export function Profile(){
     if(photoSelected.canceled) {
       return;
     }
-
-    console.log(photoSelected)
+		setUserPhoto(photoSelected.assets[0].uri);
   }
 		
 	return (
@@ -42,7 +42,7 @@ export function Profile(){
 							endColor="green.500"
 						/> :
 						<UserPhoto 
-							source={{ uri: 'https://github.com/Ca-byte.png'}}
+							source={{ uri: usePhoto}}
 							alt="User Image Profile"
 							size={PHOTO_SIZE}
 						/>
