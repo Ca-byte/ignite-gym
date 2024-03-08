@@ -6,7 +6,7 @@ import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Center, Heading, ScrollView, Skeleton, Text, VStack } from "native-base";
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 
 const PHOTO_SIZE = 33;
 
@@ -30,6 +30,10 @@ export function Profile(){
 			console.log(photoInfo);
 
 		setUserPhoto(photoSelected.assets[0].uri);
+		if (photoInfo.exists && (photoInfo.size / 1024 / 1024 > 5)) {
+			return Alert.alert('This image is very large. Choose one up to 5 MB.'); 
+		}
+		
   	}
 	}
 		
