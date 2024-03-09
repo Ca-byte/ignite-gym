@@ -4,9 +4,9 @@ import { ScreenHeader } from "@/components/ScreenHeader";
 import { UserPhoto } from "@/components/UserPhoto";
 import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
-import { Center, Heading, ScrollView, Skeleton, Text, VStack } from "native-base";
+import { Center, Heading, ScrollView, Skeleton, Text, VStack, useToast } from "native-base";
 import { useState } from "react";
-import { Alert, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 const PHOTO_SIZE = 33;
 
@@ -15,6 +15,7 @@ export function Profile(){
 	const [ usePhoto, setUserPhoto]= useState('https://github.com/Ca-byte.png');
 
 	async function handleUserPhothSelected() {
+		const toast = useToast();
 		const photoSelected = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
@@ -30,8 +31,12 @@ export function Profile(){
 			console.log(photoInfo);
 
 		setUserPhoto(photoSelected.assets[0].uri);
-		if (photoInfo.exists && (photoInfo.size / 1024 / 1024 > 5)) {
-			return Alert.alert('This image is very large. Choose one up to 5 MB.'); 
+		if (photoInfo.exists && (photoInfo.size / 1024 / 1024 > 2)) {
+			return toast.show({
+				title: 'This image is very large. Choose one up to 5 MB.',
+				placement: 'top',
+				bgColor: 'red.500'
+			})
 		}
 		
   	}
