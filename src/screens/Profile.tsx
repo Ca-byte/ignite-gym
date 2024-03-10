@@ -31,7 +31,7 @@ export function Profile(){
 			console.log(photoInfo);
 
 		setUserPhoto(photoSelected.assets[0].uri);
-		if (photoInfo.exists && (photoInfo.size / 1024 / 1024 > 2)) {
+		if (photoInfo.exists && (photoInfo.size / 1024 / 1024 > 5)) {
 			return toast.show({
 				title: 'This image is very large. Choose one up to 5 MB.',
 				placement: 'top',
