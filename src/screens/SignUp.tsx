@@ -9,14 +9,15 @@ import { Controller, useForm } from 'react-hook-form';
 
 export function SignUp(){
 	const navigation = useNavigation();
-	const { control } = useForm()
+	const { control, handleSubmit } = useForm()
 
 
 	function handleGoBack(){
 		navigation.goBack();
 	}
 
-	function HandleSignUp(){
+	function HandleSignUp(data: any){
+		console.log(data)
 		
 	
 	
@@ -98,13 +99,15 @@ export function SignUp(){
 								secureTextEntry
 								onChangeText={onChange}
 								value={value}
+								onSubmitEditing={handleSubmit(HandleSignUp)}
+								returnKeyType='send'
 							/>
 						)}
 				 	/>
 				
 					<Button
 						title="Create and access"
-						onPress={HandleSignUp}
+						onPress={handleSubmit(HandleSignUp)}
 					/>
 				</Center>
 
