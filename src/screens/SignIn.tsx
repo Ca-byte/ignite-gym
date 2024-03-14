@@ -1,10 +1,10 @@
 
-import { Center, Image, Text, VStack, Heading, ScrollView } from "native-base";
 import BackgroundImg from '@/assets/background.png';
-import LogoSvg from '@/assets/logo.svg'
-import { Input } from "@/components/Input";
+import LogoSvg from '@/assets/logo.svg';
 import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
 import { useNavigation } from "@react-navigation/native";
+import { Center, Heading, Image, ScrollView, Text, VStack } from "native-base";
 
 import { AuthNavigatorRoutesProps } from "@/routes/auth.routes";
 export function SignIn(){
@@ -30,10 +30,12 @@ export function SignIn(){
 				/>
 				<Center my={24}>
 					<LogoSvg />
-					<Text color='gray.100' fontSize="sm">Train your mind and body</Text>
+					<Text color='gray.100' fontSize="sm">
+						Train your mind and body
+					</Text>
 				</Center>
 				<Center>
-					<Heading color="gray.100" fontSize="xl" fontFamily="heading">
+					<Heading color="gray.100" fontSize="xl" fontFamily="heading" mb={6}>
 						Access your account 
 					</Heading>
 

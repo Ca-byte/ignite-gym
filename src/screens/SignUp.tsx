@@ -41,7 +41,7 @@ export function SignUp(){
 					<Text color='gray.100' fontSize="sm">Train your mind and body</Text>
 				</Center>
 				<Center>
-					<Heading color="gray.100" fontSize="xl" fontFamily="heading">
+					<Heading color="gray.100" fontSize="xl" fontFamily="heading" mb={6}>
 						Create your account 
 					</Heading>
 
