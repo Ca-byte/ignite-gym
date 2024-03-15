@@ -53,6 +53,9 @@ export function SignUp(){
 					<Controller
 						control={control}
 						name="name"
+						rules={{
+              required: 'Informe name.'
+            }}
 						render={(
 							{ field : {onChange, value}}
 						)=> (
