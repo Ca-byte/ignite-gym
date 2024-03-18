@@ -74,6 +74,13 @@ export function SignUp(){
 					<Controller 
 						control={control}
 						name="email"
+						rules={{
+              required: 'Informe e-mail.',
+							pattern: {
+								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+								message: 'E-mail inválido'
+							}
+            }}
 						render={(
 							{ field : {onChange, value}}
 						)=> (
@@ -86,6 +93,10 @@ export function SignUp(){
 							/>
 						)}
 				 	/>
+					<Text 
+						color="white">
+						{errors.email?.message}
+					</Text>
 				
 					<Controller 
 						control={control}
