@@ -63,14 +63,11 @@ export function SignUp(){
 								placeholder='Name'
 								onChangeText={onChange}
 								value={value}
+								errorMessage={errors.name?.message}
 							/>
 					)}
 					 />
-					<Text 
-						color="white">
-						{errors.name?.message}
-					</Text>
-					
+			
 					<Controller 
 						control={control}
 						name="email"
@@ -90,14 +87,11 @@ export function SignUp(){
 								autoCapitalize='none'
 								onChangeText={onChange}
 								value={value}
+								errorMessage={errors.email?.message}
 							/>
 						)}
 				 	/>
-					<Text 
-						color="white">
-						{errors.email?.message}
-					</Text>
-				
+					
 					<Controller 
 						control={control}
 						name="password"
