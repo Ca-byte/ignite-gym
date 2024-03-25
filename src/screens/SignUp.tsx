@@ -130,7 +130,7 @@ export function SignUp(){
 					/>
 				</Center>
 
-					<Button mt={24}
+					<Button mt={12}
 						variant="outline"
 						title="Back to login"
 						onPress={handleGoBack}
