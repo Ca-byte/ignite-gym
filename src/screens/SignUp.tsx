@@ -118,8 +118,9 @@ export function SignUp(){
 								secureTextEntry
 								onChangeText={onChange}
 								value={value}
-								onSubmitEditing={handleSubmit(HandleSignUp)}
 								returnKeyType='send'
+								onSubmitEditing={handleSubmit(HandleSignUp)}
+								errorMessage={errors.confirm_password?.message}
 							/>
 						)}
 				 	/>
