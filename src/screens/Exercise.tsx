@@ -1,14 +1,14 @@
-import { Box, HStack, Heading, Icon, Image, Text, VStack, ScrollView } from "native-base";
-import { TouchableOpacity } from "react-native";
+import { AppNavigatorRoutesProps } from "@/routes/app.route";
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
-import { AppNavigatorRoutesProps } from "@/routes/app.route";
+import { Box, HStack, Heading, Icon, Image, ScrollView, Text, VStack } from "native-base";
+import { TouchableOpacity } from "react-native";
 
-import SeriesSvg from '../assets/series.svg';
 import RepetitionsSvg from '../assets/repetitions.svg';
+import SeriesSvg from '../assets/series.svg';
 
-import BodySvg from '../assets/body.svg'
 import { Button } from "@/components/Button";
+import BodySvg from '../assets/body.svg';
 
 export function Exercise(){
 
@@ -35,6 +35,7 @@ export function Exercise(){
 							color="gray.100" 
 							fontSize="lg" 
 							flexShrink={1}
+							fontFamily="heading"
 						>
 							Front Pull
 						</Heading>

@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { SectionList } from "react-native";
 import { HistoryCard } from "@/components/HistoryCard";
 import { ScreenHeader } from "@/components/ScreenHeader";
-import { Heading, Text, VStack} from "native-base";
+import { Heading, Text, VStack } from "native-base";
+import { useState } from "react";
+import { SectionList } from "react-native";
 
 export function History(){
 	const [exercises, setExercises] = useState([
@@ -25,7 +25,14 @@ export function History(){
           <HistoryCard />
         )}
         renderSectionHeader={({ section }) => (
-          <Heading color="gray.200" fontSize="md" mt={10} mb={3} px={8}>
+          <Heading 
+            color="gray.200" 
+            fontSize="md" 
+            mt={10} 
+            mb={3} 
+            px={8} 
+            fontFamily="heading"
+          >
             {section.title}
           </Heading>
         )}

@@ -1,5 +1,5 @@
+import { HStack, Heading, Icon, Image, Text, VStack } from 'native-base';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { Heading, HStack, Image, Text, VStack, Icon } from 'native-base';
 
 import { Entypo } from '@expo/vector-icons';
 
@@ -20,7 +20,11 @@ export function ExerciseCard({ ...rest }: Props) {
         />
 
         <VStack flex={1}>
-          <Heading fontSize="lg" color="white" fontFamily="heading">
+          <Heading 
+            fontSize="lg" 
+            color="white" 
+            fontFamily="heading"
+          >
 						Unilateral row
           </Heading>
 

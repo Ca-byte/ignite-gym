@@ -77,7 +77,14 @@ export function Profile(){
 						isDisabled
 					/>
 
-          <Heading color="gray.200" fontSize="md" mb={2} alignSelf="flex-start" mt={12}>
+          <Heading 
+						color="gray.200" 
+						fontSize="md" 
+						mb={2} 
+						alignSelf="flex-start" 
+						mt={12}
+						fontFamily="heading"
+					>
 						Change Password
           </Heading>
 

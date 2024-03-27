@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { ExerciseCard } from "@/components/ExerciseCard";
 import { Group } from "@/components/Group";
 import { HomeHeader } from "@/components/HomeHeader";
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
-import { FlatList, HStack, Heading, Text, VStack } from "native-base";
 import { AppNavigatorRoutesProps } from "@/routes/app.route";
+import { FlatList, HStack, Heading, Text, VStack } from "native-base";
 
 export function Home(){
 	const [groups, setGroups] = useState(['back','biceps','shoulder','triceps'])
@@ -40,7 +40,11 @@ export function Home(){
 				/>
 				<VStack px={8}>
 					<HStack justifyContent="space-between" mb={5}>
-						<Heading color="gray.200" fontSize="md" fontFamily="heading">
+						<Heading 
+							color="gray.200" 
+							fontSize="md" 
+							fontFamily="heading"
+						>
 							Exercícios
 						</Heading>
 

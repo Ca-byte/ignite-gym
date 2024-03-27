@@ -58,7 +58,12 @@ export function SignIn(){
 					</Text>
 				</Center>
 				<Center>
-					<Heading color="gray.100" fontSize="xl" fontFamily="heading" mb={6}>
+					<Heading 
+						color="gray.100" 
+						fontSize="xl" 
+						fontFamily="heading" 
+						mb={6}
+					>
 						Access your account 
 					</Heading>
 
