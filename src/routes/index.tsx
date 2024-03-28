@@ -10,9 +10,9 @@ export function Routes(){
 	
 	return(
 		<Box flex={1} bg="gray.700">
-		<NavigationContainer theme={theme}>
-			<AuthRoutes />
-		</NavigationContainer>
+			<NavigationContainer theme={theme}>
+				<AuthRoutes />
+			</NavigationContainer>
 		</Box>
 	)
 }

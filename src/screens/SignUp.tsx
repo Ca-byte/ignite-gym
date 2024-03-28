@@ -40,8 +40,8 @@ export function SignUp(){
 
 	return(
 		<ScrollView 
-		contentContainerStyle={{ flexGrow: 1}} 
-		showsVerticalScrollIndicator={false}
+			contentContainerStyle={{ flexGrow: 1}} 
+			showsVerticalScrollIndicator={false}
 		>
 			<VStack flex={1} px={10} pb={16}>
 				<Image 
@@ -53,7 +53,9 @@ export function SignUp(){
 				/>
 				<Center my={24}>
 					<LogoSvg />
-					<Text color='gray.100' fontSize="sm">Train your mind and body</Text>
+					<Text color='gray.100' fontSize="sm">
+						Train your mind and body
+					</Text>
 				</Center>
 				<Center>
 					<Heading 
@@ -141,7 +143,6 @@ export function SignUp(){
 						title="Back to login"
 						onPress={handleGoBack}
 					/>
-					
 			</VStack>
 		</ScrollView>
 	)

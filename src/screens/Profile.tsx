@@ -45,7 +45,6 @@ export function Profile(){
 	return (
 		<VStack>
 			<ScreenHeader title="Profile" />
-
 			<ScrollView contentContainerStyle={{ paddingBottom: 36}}>
 				<Center mt={6} px={10}>
 					{ isPhotoLoaded ?
@@ -63,7 +62,13 @@ export function Profile(){
 						/>
 					}
 					<TouchableOpacity onPress={handleUserPhothSelected}>
-						<Text color="green.500" fontWeight="bold" fontSize="md" mt={2} mb={8}>
+						<Text 
+							color="green.500" 
+							fontWeight="bold" 
+							fontSize="md" 
+							mt={2} 
+							mb={8}
+						>
 							Change Photo
 						</Text>
 					</TouchableOpacity>

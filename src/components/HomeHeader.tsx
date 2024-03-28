@@ -5,7 +5,13 @@ import { UserPhoto } from "./UserPhoto";
 
 export function HomeHeader(){
 	return(
-		<HStack bg="gray.600" pt={16} pb={5} px={4} alignItems="center">
+		<HStack 
+			bg="gray.600" 
+			pt={16} 
+			pb={5} 
+			px={4} 
+			alignItems="center"
+		>
 			<UserPhoto 
 				source={{ uri: 'https://github.com/Ca-byte.png'}}
 				alt="User Image Profile"

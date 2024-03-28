@@ -40,8 +40,8 @@ export function SignIn(){
 	
 	return(
 		<ScrollView 
-		contentContainerStyle={{ flexGrow: 1}} 
-		showsVerticalScrollIndicator={false}
+			contentContainerStyle={{ flexGrow: 1}} 
+			showsVerticalScrollIndicator={false}
 		>
 			<VStack flex={1} px={10} pb={16}>
 				<Image 
@@ -68,20 +68,20 @@ export function SignIn(){
 					</Heading>
 
 					<Controller 
-					control={control}
-					name="email"
-					render={(
-						{ field : {onChange, value}}
-					)=> (
-						<Input 
-							placeholder='Email'
-							keyboardType="email-address"
-							autoCapitalize="none"
-							onChangeText={onChange}
-							value={value}
-							errorMessage={errors.email?.message}
-						/>
-					)}
+						control={control}
+						name="email"
+						render={(
+							{ field : {onChange, value}}
+						)=> (
+							<Input 
+								placeholder='Email'
+								keyboardType="email-address"
+								autoCapitalize="none"
+								onChangeText={onChange}
+								value={value}
+								errorMessage={errors.email?.message}
+							/>
+						)}
 					/>
 					<Controller 
 						control={control}
@@ -106,7 +106,12 @@ export function SignIn(){
 				</Center>
 
 				<Center mt={24}>
-					<Text color="gray.100" fontSize="sm" mb={3} fontFamily="body">
+					<Text 
+						color="gray.100" 
+						fontSize="sm" 
+						mb={3} 
+						fontFamily="body"
+					>
 						Don't have access yet?
 					</Text>
 

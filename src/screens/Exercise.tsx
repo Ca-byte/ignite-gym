@@ -23,12 +23,18 @@ export function Exercise(){
 			<ScrollView>
 				<VStack px={8} bg="gray.600" pt={12}>
 					<TouchableOpacity onPress={handleGoBack}>
-						<Icon as={Feather} name="arrow-left" color="green.500" size={6}/>
+						<Icon 
+							as={Feather} 
+							name="arrow-left" 
+							color="green.500" 
+							size={6}
+						/>
 					</TouchableOpacity>
 
 					<HStack 
 						justifyContent="space-between" 
-						mt={4} mb={8} 
+						mt={4} 
+						mb={8} 
 						alignItems="center"
 					>
 						<Heading 
@@ -43,7 +49,8 @@ export function Exercise(){
 							<BodySvg />
 							<Text 
 								color="gray.200" 
-								ml={1} textTransform="capitalize"
+								ml={1} 
+								textTransform="capitalize"
 							>
 								Back
 							</Text>
@@ -63,7 +70,12 @@ export function Exercise(){
 					</VStack>
 
 				<Box bg="gray.600" rounded="md" pb={4} px={4}>
-					<HStack alignItems="center" justifyContent="space-around" mb={6} mt={5}>
+					<HStack 
+						alignItems="center" 
+						justifyContent="space-around" 
+						mb={6} 
+						mt={5}
+					>
 						<HStack>
 							<SeriesSvg />
 							<Text color="gray.200" ml="2">
