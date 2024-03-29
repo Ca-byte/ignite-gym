@@ -33,10 +33,16 @@ export function SignUp(){
 		navigation.goBack();
 	}
 
-	function HandleSignUp({name, email, password, confirm_password}: FormDataProps){
-		console.log(name, email, password, confirm_password)
-
-	}
+	function handleSignUp({ name, email, password }: FormDataProps) {
+    fetch('http://localhost:3333/users', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, email, password })
+    });
+  }
 
 	return(
 		<ScrollView 
@@ -126,7 +132,7 @@ export function SignUp(){
 								onChangeText={onChange}
 								value={value}
 								returnKeyType='send'
-								onSubmitEditing={handleSubmit(HandleSignUp)}
+								onSubmitEditing={handleSubmit(handleSignUp)}
 								errorMessage={errors.confirm_password?.message}
 							/>
 						)}
@@ -134,7 +140,7 @@ export function SignUp(){
 				
 					<Button
 						title="Create and access"
-						onPress={handleSubmit(HandleSignUp)}
+						onPress={handleSubmit(handleSignUp)}
 					/>
 				</Center>
 
