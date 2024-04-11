@@ -1,7 +1,17 @@
 import axios from "axios";
 
-export const api = axios.create({
+const api = axios.create({
 
-  baseURL: 'http://localhost:3333'
+  baseURL: '192.168.100.17:3333'
 
 });
+
+api.interceptors.response.use((response) => {
+  console.log("INTERCEPTOR =>", response)
+  return response
+}, (error) => {
+  console.log('INTERCEPTOR RESPONSE ERROR =>', error)
+  return Promise.reject(error);
+})
+
+export { api };
