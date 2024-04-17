@@ -1,4 +1,4 @@
-import { AuthContext } from '@/contexts/AuthContext';
+import { AuthContextProvider } from '@/contexts/AuthContext';
 import { Roboto_400Regular, Roboto_700Bold, useFonts } from '@expo-google-fonts/roboto';
 import { NativeBaseProvider } from 'native-base';
 import { StatusBar } from 'react-native';
@@ -18,16 +18,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-       <AuthContext.Provider value={{
-        user: {
-          id: '1',
-          name: 'Caroline Vieira',
-          email: 'caroline@email.com',
-          avatar: 'caroline.png'
-        }
-      }}>
-        {fontsLoaded ? <Routes /> : <Loading />}
-      </AuthContext.Provider>
+      <AuthContextProvider>
+       {fontsLoaded ? <Routes /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
