@@ -6,6 +6,7 @@ import { Input } from "@/components/Input";
 import { useNavigation } from "@react-navigation/native";
 import { Center, Heading, Image, ScrollView, Text, VStack } from "native-base";
 
+import { useAuth } from '@/hooks/useAuth';
 import { AuthNavigatorRoutesProps } from "@/routes/auth.routes";
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,6 +24,7 @@ const signInSchema = yup.object({
 });
 
 export function SignIn(){
+	const { singIn } = useAuth()
 
 	const navigation = useNavigation<AuthNavigatorRoutesProps>();
 	const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
@@ -33,9 +35,8 @@ export function SignIn(){
 		navigation.navigate('signUp');
 	}
 
-	function HandleSignIn({ email, password}: FormDataProps){
-		console.log(email, password)
-
+	function handleSignIn({ email, password}: FormDataProps){
+		singIn(email, password)
 	}
 	
 	return(
@@ -101,7 +102,7 @@ export function SignIn(){
 
 					<Button
 						title="Access"
-						onPress={handleSubmit(HandleSignIn)}
+						onPress={handleSubmit(handleSignIn)}
 					/>
 				</Center>
 

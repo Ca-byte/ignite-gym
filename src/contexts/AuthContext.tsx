@@ -6,6 +6,7 @@ import { UserDTO } from "@/dtos/UserDTO";
 export type AuthContextDataProps = {
 
   user: UserDTO;
+  singIn: (email: string, password: string) => void
 
 }
 
@@ -22,8 +23,17 @@ export function AuthContextProvider({children}: AuthContexProviderProps){
       email: 'caroline@email.com',
       avatar: 'caroline.png'
   })
+
+  function singIn(email: string, password: string) {
+    setUser({
+      id: '',
+      name: '',
+      email,
+      avatar: '',
+    })
+  }
   return(
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, singIn }}>
       {children}
     </AuthContext.Provider>
   )
