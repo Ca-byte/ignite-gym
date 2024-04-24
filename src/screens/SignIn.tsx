@@ -4,10 +4,11 @@ import LogoSvg from '@/assets/logo.svg';
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { useNavigation } from "@react-navigation/native";
-import { Center, Heading, Image, ScrollView, Text, VStack } from "native-base";
+import { Center, Heading, Image, ScrollView, Text, VStack, useToast } from "native-base";
 
 import { useAuth } from '@/hooks/useAuth';
 import { AuthNavigatorRoutesProps } from "@/routes/auth.routes";
+import { AppError } from '@/utils/AppError';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
@@ -25,6 +26,7 @@ const signInSchema = yup.object({
 
 export function SignIn(){
 	const { singIn } = useAuth()
+	const toast = useToast();
 
 	const navigation = useNavigation<AuthNavigatorRoutesProps>();
 	const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
@@ -35,9 +37,21 @@ export function SignIn(){
 		navigation.navigate('signUp');
 	}
 
-	async function handleSignIn({ email, password}: FormDataProps){
-		await singIn(email, password)
-	}
+	async function handleSignIn({ email, password }: FormDataProps) {
+    try {
+      await singIn(email, password);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+
+      const title =  isAppError ? error.message : 'Unable to enter. Try again later.'
+
+      toast.show({
+        title,
+        placement: 'top',
+        bgColor: 'red.500'
+      })
+    }
+  }
 	
 	return(
 		<ScrollView 
