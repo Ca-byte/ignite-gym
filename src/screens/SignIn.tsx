@@ -20,8 +20,8 @@ type FormDataProps = {
 }
 
 const signInSchema = yup.object({
-  email: yup.string().required('Inform e-mail').email('Invalid E-mail'),
-  password: yup.string().required('Inform password').min(6, 'The password must be at least 6 digits long.'),
+  email: yup.string().required('Inform an e-mail').email('Invalid E-mail'),
+  password: yup.string().required('Inform a password').min(6, 'The password must have at least 6 digits long.'),
 });
 
 export function SignIn(){
@@ -42,7 +42,6 @@ export function SignIn(){
       await singIn(email, password);
     } catch (error) {
       const isAppError = error instanceof AppError;
-
       const title =  isAppError ? error.message : 'Unable to enter. Try again later.'
 
       toast.show({
