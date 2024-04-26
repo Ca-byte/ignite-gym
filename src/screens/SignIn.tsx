@@ -11,6 +11,7 @@ import { AuthNavigatorRoutesProps } from "@/routes/auth.routes";
 import { AppError } from '@/utils/AppError';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -27,6 +28,7 @@ const signInSchema = yup.object({
 export function SignIn(){
 	const { singIn } = useAuth()
 	const toast = useToast();
+	const[isLoading, setIsLoading]= useState(false)
 
 	const navigation = useNavigation<AuthNavigatorRoutesProps>();
 	const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
@@ -39,16 +41,18 @@ export function SignIn(){
 
 	async function handleSignIn({ email, password }: FormDataProps) {
     try {
+			setIsLoading(true)
       await singIn(email, password);
+
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title =  isAppError ? error.message : 'Unable to enter. Try again later.'
-
       toast.show({
-        title,
+				title,
         placement: 'top',
         bgColor: 'red.500'
       })
+			setIsLoading(false)
     }
   }
 	
@@ -133,6 +137,7 @@ export function SignIn(){
 						variant="outline"
 						title="Create account"
 						onPress={handleNewAccount}
+						isLoading={isLoading}
 					/>
 				</Center>
 			</VStack>
