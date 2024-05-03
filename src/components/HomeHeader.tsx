@@ -1,4 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
+import defaulUserPhotoImg from '@assets/userPhotoDefault.png';
 import { MaterialIcons } from "@expo/vector-icons";
 import { HStack, Heading, Icon, Text, VStack } from "native-base";
 import { TouchableOpacity } from "react-native";
@@ -15,7 +16,7 @@ export function HomeHeader(){
 			alignItems="center"
 		>
 			<UserPhoto 
-				source={{ uri: 'https://github.com/Ca-byte.png'}}
+				 source={user.avatar  ? { uri: user.avatar } : defaulUserPhotoImg}
 				alt="User Image Profile"
 				size={16}
 				mr={4}
