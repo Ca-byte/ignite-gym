@@ -4,7 +4,7 @@ import { HStack, Heading, Icon, Text, VStack } from "native-base";
 import { TouchableOpacity } from "react-native";
 import { UserPhoto } from "./UserPhoto";
 
-import defaulUserPhotoImg from '@assets/userPhotoDefault.png';
+import defaulUserPhotoImg from '../assets/userPhotoDefault.png';
 
 export function HomeHeader(){
 	const { user, signOut } = useAuth();
