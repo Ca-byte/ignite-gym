@@ -2,18 +2,18 @@ import { ExerciseCard } from "@/components/ExerciseCard";
 import { Group } from "@/components/Group";
 import { HomeHeader } from "@/components/HomeHeader";
 import { ExerciseDTO } from "@/dtos/ExerciseDTO";
+import { AppNavigatorRoutesProps } from "@/routes/app.route";
+import { api } from "@/services/api";
+import { AppError } from "@/utils/AppError";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FlatList, HStack, Heading, Text, Toast, VStack } from "native-base";
 import { useCallback, useEffect, useState } from "react";
 
-import { AppNavigatorRoutesProps } from "@/routes/app.route";
-import { api } from "@/services/api";
-import { AppError } from "@/utils/AppError";
-
 export function Home(){
 	const [groups, setGroups] = useState<string[]>([])
 	const [exercises, setExercises] = useState<ExerciseDTO[]>([]);
-	const [groupSelected, setGroupSelected] = useState('back')
+	const [groupSelected, setGroupSelected] = useState('bíceps');
+	const [isLoading, setIsLoading] = useState(true);
 
 	const navigation = useNavigation<AppNavigatorRoutesProps>();
 
@@ -35,12 +35,14 @@ export function Home(){
         placement: 'top',
         bgColor: 'red.500'
       })
-    }
+    } 
   }
 
 	async function fetchGroups() {
     try {
+			setIsLoading(true);
       const response = await api.get('/groups');
+
       setGroups(response.data);
 
     } catch (error) {
@@ -52,6 +54,8 @@ export function Home(){
         placement: 'top',
         bgColor: 'red.500'
       })
+    } finally {
+      setIsLoading(false);
     }
   }
 
