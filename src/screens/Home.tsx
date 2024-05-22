@@ -1,6 +1,7 @@
 import { ExerciseCard } from "@/components/ExerciseCard";
 import { Group } from "@/components/Group";
 import { HomeHeader } from "@/components/HomeHeader";
+import { Loading } from "@/components/Loading";
 import { ExerciseDTO } from "@/dtos/ExerciseDTO";
 import { AppNavigatorRoutesProps } from "@/routes/app.route";
 import { api } from "@/services/api";
@@ -23,7 +24,9 @@ export function Home(){
 
 	async function fecthExercisesByGroup() {
     try {
+			setIsLoading(true);
       const response = await api.get(`/exercises/bygroup/${groupSelected}`);
+
 			setExercises(response.data);
 
     } catch (error) {
@@ -35,14 +38,14 @@ export function Home(){
         placement: 'top',
         bgColor: 'red.500'
       })
+    } finally {
+      setIsLoading(false);
     } 
   }
 
 	async function fetchGroups() {
     try {
-			setIsLoading(true);
       const response = await api.get('/groups');
-
       setGroups(response.data);
 
     } catch (error) {
@@ -54,8 +57,6 @@ export function Home(){
         placement: 'top',
         bgColor: 'red.500'
       })
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -72,23 +73,24 @@ export function Home(){
 	return (
 		<VStack flex={1}>
 			<HomeHeader />
-				<FlatList
-					data={groups}
-					keyExtractor={item => item}
-					renderItem={({ item}) => (
-						<Group 
-							name={item} 
-							isActive={groupSelected.toUpperCase() === item.toUpperCase()}
-							onPress={() => setGroupSelected(item)}
-						/>
-					)}
-					horizontal
-					showsHorizontalScrollIndicator={false}
-					_contentContainerStyle={{ px: 8 }}
-					my={10}
-					maxH={10}
-					minH={10}
+			<FlatList
+			data={groups}
+			keyExtractor={item => item}
+			renderItem={({ item}) => (
+				<Group 
+				name={item} 
+				isActive={groupSelected.toUpperCase() === item.toUpperCase()}
+				onPress={() => setGroupSelected(item)}
 				/>
+			)}
+			horizontal
+			showsHorizontalScrollIndicator={false}
+			_contentContainerStyle={{ px: 8 }}
+			my={10}
+			maxH={10}
+			minH={10}
+			/>
+			{isLoading ? <Loading /> :
 				<VStack px={8}>
 					<HStack justifyContent="space-between" mb={5}>
 						<Heading 
@@ -118,6 +120,7 @@ export function Home(){
 						}}
 					/>
       </VStack>
+		}
 		</VStack>
 	)
 }
