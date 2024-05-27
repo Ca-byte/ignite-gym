@@ -13,7 +13,7 @@ import { useCallback, useEffect, useState } from "react";
 export function Home(){
 	const [groups, setGroups] = useState<string[]>([])
 	const [exercises, setExercises] = useState<ExerciseDTO[]>([]);
-	const [groupSelected, setGroupSelected] = useState('bíceps');
+	const [groupSelected, setGroupSelected] = useState('antebraço');
 	const [isLoading, setIsLoading] = useState(true);
 
 	const navigation = useNavigation<AppNavigatorRoutesProps>();

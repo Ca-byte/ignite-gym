@@ -1,7 +1,7 @@
 import { AppNavigatorRoutesProps } from "@/routes/app.route";
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Box, HStack, Heading, Icon, Image, ScrollView, Text, VStack, useToast } from "native-base";
+import { Box, HStack, Heading, Icon, Image, Text, VStack, useToast } from "native-base";
 import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 
@@ -13,6 +13,7 @@ import RepetitionsSvg from '../assets/repetitions.svg';
 import SeriesSvg from '../assets/series.svg';
 
 import { Button } from "@/components/Button";
+import { Loading } from "@/components/Loading";
 import BodySvg from '../assets/body.svg';
 
 type RouteParamsProps = {
@@ -20,6 +21,7 @@ type RouteParamsProps = {
 }
 
 export function Exercise(){
+	const [isLoading, setIsLoading] = useState(true);
 	const [exercise, setExercise] = useState<ExerciseDTO>({} as ExerciseDTO);
 	const navigation = useNavigation<AppNavigatorRoutesProps>()
 	const route = useRoute();
@@ -33,6 +35,7 @@ export function Exercise(){
 
 	async function fetchExerciseDetails() {
     try {
+			setIsLoading(true);
       const response = await api.get(`/exercises/${exerciseId}`);
 
       setExercise(response.data);
@@ -46,6 +49,8 @@ export function Exercise(){
         placement: 'top',
         bgColor: 'red.500'
       })
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -55,7 +60,6 @@ export function Exercise(){
 
 	return (
 		<VStack flex={1}>
-			<ScrollView>
 				<VStack px={8} bg="gray.600" pt={12}>
 					<TouchableOpacity onPress={handleGoBack}>
 						<Icon 
@@ -92,44 +96,47 @@ export function Exercise(){
 						</HStack>
 					</HStack>
 				</VStack>
-				<Box rounded="lg" mb={3} overflow="hidden">
-          <Image
-            w="full"
-            h={80}
-            source={{ uri: `${api.defaults.baseURL}/exercise/demo/${exercise?.demo}` }}
-            alt="Nome do exercício"
-            resizeMode="cover"
-            rounded="lg"
-          />
-        </Box>
+				{isLoading ? <Loading /> : 
+				<VStack p={8}>
+					<Box rounded="lg" mb={3} overflow="hidden">
+						<Image
+							w="full"
+							h={80}
+							source={{ uri: `${api.defaults.baseURL}/exercise/demo/${exercise?.demo}` }}
+							alt="Nome do exercício"
+							resizeMode="cover"
+							rounded="lg"
+						/>
+					</Box>
 
-				<Box bg="gray.600" rounded="md" pb={4} px={4}>
-					<HStack 
-						alignItems="center" 
-						justifyContent="space-around" 
-						mb={6} 
-						mt={5}
-					>
-						<HStack>
-							<SeriesSvg />
-							<Text color="gray.200" ml="2">
-							{exercise.series} séries
-							</Text>
+					<Box bg="gray.600" rounded="md" pb={4} px={4}>
+						<HStack 
+							alignItems="center" 
+							justifyContent="space-around" 
+							mb={6} 
+							mt={5}
+						>
+							<HStack>
+								<SeriesSvg />
+								<Text color="gray.200" ml="2">
+								{exercise.series} séries
+								</Text>
+							</HStack>
+
+							<HStack>
+								<RepetitionsSvg />
+								<Text color="gray.200" ml="2">
+								{exercise.repetitions} repetições
+								</Text>
+							</HStack>
 						</HStack>
 
-						<HStack>
-							<RepetitionsSvg />
-							<Text color="gray.200" ml="2">
-							{exercise.repetitions} repetições
-							</Text>
-						</HStack>
-					</HStack>
-
-					<Button 
-						title="Well Done!"
-					/>
-				</Box>
-			</ScrollView>
+						<Button 
+							title="Well Done!"
+						/>
+					</Box>
+				</VStack>
+				}
 		</VStack>
 
 	)
