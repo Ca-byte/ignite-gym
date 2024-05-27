@@ -39,7 +39,7 @@ export function Exercise(){
 
     } catch (error) {
       const isAppError = error instanceof AppError;
-      const title = isAppError ? error.message : 'Unable to load exercises';
+      const title = isAppError ? error.message : 'Unable to load exercises details';
 
       toast.show({
         title,
