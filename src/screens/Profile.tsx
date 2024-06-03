@@ -2,20 +2,38 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { UserPhoto } from "@/components/UserPhoto";
+import { useAuth } from "@/hooks/useAuth";
 import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Center, Heading, ScrollView, Skeleton, Text, VStack, useToast } from "native-base";
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { TouchableOpacity } from "react-native";
 
 const PHOTO_SIZE = 33;
+
+type FormDataProps = {
+  name: string;
+  email: string;
+  password: string;
+  oldPassword: string;
+  newPassword: string;
+}
 
 export function Profile(){
 	const [isPhotoLoaded, setIsPhotoLoaded]= useState(false);
 	const [ usePhoto, setUserPhoto]= useState('https://github.com/Ca-byte.png');
 
+	const toast = useToast();
+	const { user } = useAuth();
+	const { control } = useForm<FormDataProps>({ defaultValues: { 
+		name: user.name,
+		email: user.email
+	} });
+	
 	async function handleUserPhothSelected() {
-		const toast = useToast();
+
+
 		const photoSelected = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
@@ -72,15 +90,31 @@ export function Profile(){
 							Change Photo
 						</Text>
 					</TouchableOpacity>
-					<Input 
-						bg="gray.600"
-						placeholder="Name"
-					/>
-					<Input 
-						bg="gray.600"
-						placeholder="E-mail"
-						isDisabled
-					/>
+					 <Controller 
+            control={control}
+            name="name"
+            render={({ field: { value, onChange } }) => (
+              <Input 
+                bg="gray.600" 
+                placeholder='Nome'
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+					 <Controller 
+            control={control}
+            name="email"
+            render={({ field: { value, onChange } }) => (
+              <Input 
+                bg="gray.600" 
+                placeholder="E-mail"
+                isDisabled
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
 
           <Heading 
 						color="gray.200" 
