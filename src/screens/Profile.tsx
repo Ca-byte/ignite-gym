@@ -3,22 +3,29 @@ import { Input } from "@/components/Input";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { UserPhoto } from "@/components/UserPhoto";
 import { useAuth } from "@/hooks/useAuth";
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Center, Heading, ScrollView, Skeleton, Text, VStack, useToast } from "native-base";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { TouchableOpacity } from "react-native";
+import * as yup from 'yup';
 
 const PHOTO_SIZE = 33;
 
 type FormDataProps = {
   name: string;
-  email: string;
-  password: string;
-  old_password: string;
-  confirm_password: string;
+  email?: string;
+  password?: string;
+  old_password?: string;
+  confirm_password?: string;
 }
+
+const profileSchema = yup.object({
+  name: yup.string().required('Informe o nome'),
+
+})
 
 export function Profile(){
 	const [isPhotoLoaded, setIsPhotoLoaded]= useState(false);
@@ -26,10 +33,13 @@ export function Profile(){
 
 	const toast = useToast();
 	const { user } = useAuth();
-	const { control, handleSubmit } = useForm<FormDataProps>({ defaultValues: { 
-		name: user.name,
-		email: user.email
-	} });
+	 const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({ 
+    defaultValues: { 
+      name: user.name,
+      email: user.email
+    },
+    resolver: yupResolver(profileSchema) 
+  });
 	
 	async function handleUserPhothSelected() {
 
@@ -103,6 +113,7 @@ export function Profile(){
                 placeholder='Nome'
                 onChangeText={onChange}
                 value={value}
+								 errorMessage={errors.name?.message}
               />
             )}
           />
@@ -151,6 +162,7 @@ export function Profile(){
 							bg="gray.600"
 							placeholder="New password"
 							secureTextEntry
+							errorMessage={errors.password?.message}
 						/>
             )}
           />	
@@ -162,6 +174,7 @@ export function Profile(){
 							bg="gray.600"
 							placeholder="Confirm new password"
 							secureTextEntry
+							errorMessage={errors.confirm_password?.message}
 						/>
             )}
           />	
