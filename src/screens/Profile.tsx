@@ -17,13 +17,15 @@ const PHOTO_SIZE = 33;
 type FormDataProps = {
   name: string;
   email?: string;
-  password?: string;
-  old_password?: string;
-  confirm_password?: string;
+ password?: string | null | undefined;
+  old_password?: string | null | undefined;
+  confirm_password?: string | null | undefined;
 }
 
 const profileSchema = yup.object({
-  name: yup.string().required('Informe o nome'),
+  name: yup.string().required('Inform a name'),
+	password: yup.string().min(6, 'The password must be at least 6 digits long.').nullable().transform((value) => !!value ? value : null),
+  confirm_password: yup.string().nullable().transform((value) => !!value ? value : null).oneOf([yup.ref('password'), null], 'Password confirmation does not match.'),
 
 })
 
