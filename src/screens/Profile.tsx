@@ -33,7 +33,8 @@ const profileSchema = yup.object({
 	.when('password', {
 		is: (Field: any) => Field,
 		then: (schema) =>
-			schema.nullable().required('Inform a password confirmation.'),
+			schema.nullable().required('Inform a password confirmation.')
+			.transform((value) => !!value ? value : null),
 	}),
 })
 
