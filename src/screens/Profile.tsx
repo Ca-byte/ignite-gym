@@ -72,19 +72,28 @@ export function Profile(){
     }
 		if(photoSelected.assets[0].uri) {
 			const photoInfo = await FileSystem.getInfoAsync(photoSelected.assets[0].uri);
-			console.log(photoInfo);
 
-		setUserPhoto(photoSelected.assets[0].uri);
-		if (photoInfo.exists && (photoInfo.size / 1024 / 1024 > 5)) {
-			return toast.show({
-				title: 'This image is very large. Choose one up to 5 MB.',
-				placement: 'top',
-				bgColor: 'red.500'
-			})
-		}
-		
+
+			if (photoInfo.exists && (photoInfo.size / 1024 / 1024 > 5)) {
+				return toast.show({
+					title: 'This image is very large. Choose one up to 5 MB.',
+					placement: 'top',
+					bgColor: 'red.500'
+					})
+			}
+					
+			const fileExtension = photoSelected.assets[0].uri.split('.').pop();
+
+			const photoFile = {
+				name: `${user.name}.${fileExtension}`.toLowerCase(),
+				uri: photoSelected.assets[0].uri,
+				type: `${photoSelected.assets[0].type}/${fileExtension}`
+			}
+
+			console.log(photoFile);
   	}
 	}
+
 	async function handleProfileUpdate(data: FormDataProps) {
     try {
       setIsUpdating(true);
