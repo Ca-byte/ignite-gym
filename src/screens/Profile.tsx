@@ -3,6 +3,7 @@ import { Input } from "@/components/Input";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { UserPhoto } from "@/components/UserPhoto";
 import { useAuth } from "@/hooks/useAuth";
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
@@ -14,6 +15,8 @@ import * as yup from 'yup';
 
 import { api } from "@/services/api";
 import { AppError } from "@/utils/AppError";
+
+import defaulUserPhotoImg from '@assets/userPhotoDefault.png';
 
 const PHOTO_SIZE = 33;
 
@@ -45,7 +48,6 @@ export function Profile(){
 
   const [isUpdating, setIsUpdating] = useState(false);
 	const [isPhotoLoaded, setIsPhotoLoaded]= useState(false);
-	const [ usePhoto, setUserPhoto]= useState('https://github.com/Ca-byte.png');
 
 	const toast = useToast();
 	const { user, updateUserProfile } = useAuth();
@@ -156,7 +158,11 @@ export function Profile(){
 							endColor="green.500"
 						/> :
 						<UserPhoto 
-							source={{ uri: usePhoto}}
+						source={
+							user.avatar  
+							? { uri: `${api.defaults.baseURL}/avatar/${user.avatar}` } 
+							: defaulUserPhotoImg
+						}
 							alt="User Image Profile"
 							size={PHOTO_SIZE}
 						/>
