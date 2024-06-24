@@ -16,7 +16,7 @@ import * as yup from 'yup';
 import { api } from "@/services/api";
 import { AppError } from "@/utils/AppError";
 
-import defaulUserPhotoImg from '@assets/userPhotoDefault.png';
+import defaulUserPhotoImg from '../assets/userPhotoDefault.png';
 
 const PHOTO_SIZE = 33;
 

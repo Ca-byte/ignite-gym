@@ -1,4 +1,4 @@
-import { storageAuthTokenGet } from "@/storage/storageAuthToken";
+import { storageAuthTokenGet, storageAuthTokenSave } from "@/storage/storageAuthToken";
 import { AppError } from "@/utils/AppError";
 import axios, { AxiosError, AxiosInstance } from "axios";
 
@@ -24,9 +24,10 @@ let isRefreshing = false;
 api.registerInterceptTokenManager = singOut => {
   const interceptTokenManager = api.interceptors.response.use((response) => response, async (requestError) => {
     if(requestError.response?.status === 401) {
+      const { refresh_token } = await storageAuthTokenGet();
+
       if(requestError.response.data?.message === 'token.expired' || requestError.response.data?.message === 'token.invalid') {
 
-        const { refresh_token } = await storageAuthTokenGet();
         if(!refresh_token)
           singOut();
         return Promise.reject(requestError);
@@ -49,10 +50,29 @@ api.registerInterceptTokenManager = singOut => {
       }
 
       isRefreshing = true
+      return new Promise(async (resolve, reject) => {
+        try {
+          const { data } = await api.post('/sessions/refresh-token', { refresh_token });
 
+          await storageAuthTokenSave({ token: data.token, refresh_token: data.refresh_token });
+          console.log("TOKEN UPDATED =>", data);
 
+        } catch (error: any) {
+          failedQueued.forEach(request => {
+            request.onFailure(error);
+          })
+
+          singOut();
+          reject(error);
+        } finally {
+          isRefreshing = false;
+          failedQueued = []
+        }
+      })
 
     }
+
+    singOut();
 
     if(requestError.response && requestError.response.data) {
       return Promise.reject(new AppError(requestError.response.data.message))
