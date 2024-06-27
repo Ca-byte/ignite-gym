@@ -42,6 +42,7 @@ export function AppRoutes() {
         paddingTop: sizes[6]
       }
     }}>
+      
       <Screen 
         name='home'
         component={Home}

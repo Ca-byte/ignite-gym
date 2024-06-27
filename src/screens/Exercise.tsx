@@ -113,6 +113,7 @@ export function Exercise(){
 						>
 							{exercise.name}
 						</Heading>
+
 						<HStack alignItems="center">
 							<BodySvg />
 							<Text 
@@ -123,6 +124,7 @@ export function Exercise(){
 								{exercise.group}
 							</Text>
 						</HStack>
+						
 					</HStack>
 				</VStack>
 				{isLoading ? <Loading /> : 

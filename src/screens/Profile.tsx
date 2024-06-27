@@ -23,7 +23,7 @@ const PHOTO_SIZE = 33;
 type FormDataProps = {
   name: string;
   email?: string;
- password?: string | null | undefined;
+ 	password?: string | null | undefined;
   old_password?: string | null | undefined;
   confirm_password?: string | null | undefined;
 }
@@ -51,7 +51,7 @@ export function Profile(){
 
 	const toast = useToast();
 	const { user, updateUserProfile } = useAuth();
-	 const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({ 
+	const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({ 
     defaultValues: { 
       name: user.name,
       email: user.email
@@ -81,7 +81,7 @@ export function Profile(){
 					title: 'This image is very large. Choose one up to 5 MB.',
 					placement: 'top',
 					bgColor: 'red.500'
-					})
+				})
 			}
 					
 			const fileExtension = photoSelected.assets[0].uri.split('.').pop();
@@ -178,6 +178,7 @@ export function Profile(){
 							Change Photo
 						</Text>
 					</TouchableOpacity>
+					
 					 <Controller 
             control={control}
             name="name"
@@ -191,6 +192,7 @@ export function Profile(){
               />
             )}
           />
+
 					 <Controller 
             control={control}
             name="email"
@@ -227,7 +229,7 @@ export function Profile(){
 						/>
             )}
           />
-         
+
 				 <Controller 
             control={control}
             name="email"
@@ -240,6 +242,7 @@ export function Profile(){
 						/>
             )}
           />	
+
 					<Controller 
             control={control}
             name="email"
@@ -252,6 +255,7 @@ export function Profile(){
 						/>
             )}
           />	
+
           <Button 
 					title="Update"
 					mt={4}

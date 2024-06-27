@@ -19,6 +19,7 @@ export function AuthRoutes(){
 				name="signIn"
 				component={SignIn}
 			/>
+			
 			<Screen 
 				name="signUp"
 				component={SignUp}

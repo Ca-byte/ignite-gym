@@ -76,6 +76,7 @@ export function SignUp(){
 					resizeMode="contain"
 					position="absolute"
 				/>
+
 				<Center my={24}>
 					<LogoSvg />
 					<Text color='gray.100' fontSize="sm">
@@ -83,6 +84,7 @@ export function SignUp(){
 					</Text>
 				</Center>
 				<Center>
+
 					<Heading 
 						color="gray.100" 
 						fontSize="xl" 
@@ -169,6 +171,7 @@ export function SignUp(){
 						title="Back to login"
 						onPress={handleGoBack}
 					/>
+					
 			</VStack>
 		</ScrollView>
 	)

@@ -69,6 +69,7 @@ export function SignIn(){
 					resizeMode="contain"
 					position="absolute"
 				/>
+
 				<Center my={24}>
 					<LogoSvg />
 					<Text color='gray.100' fontSize="sm">
@@ -76,6 +77,7 @@ export function SignIn(){
 					</Text>
 				</Center>
 				<Center>
+
 					<Heading 
 						color="gray.100" 
 						fontSize="xl" 
@@ -101,6 +103,7 @@ export function SignIn(){
 							/>
 						)}
 					/>
+					
 					<Controller 
 						control={control}
 						name="password"
